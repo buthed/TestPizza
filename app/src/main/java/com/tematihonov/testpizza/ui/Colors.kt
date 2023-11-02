@@ -9,7 +9,7 @@ import androidx.compose.ui.graphics.Color
 data class Colors(
     val backgroundMain: Color = Color(0xFFFBFBFB),
     val backgroundBottomBar: Color = Color(0xFFF0F0F0),
-    val greyBottomBar: Color = Color(0xFFFBFBFB),
+    val greyBottomBar: Color = Color(0xFF7B7B7B),
     val pinkBottomBar: Color = Color(0xFFFD3A69),
     val backgroundCard: Color = Color(0xFFF5F5F5),
     val textBlack: Color = Color(0xFF202830),
