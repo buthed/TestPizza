@@ -37,5 +37,10 @@ val Typography = Typography(
         fontSize = 12.sp,
         lineHeight = 16.sp
     ),
+    labelLarge = TextStyle(
+        fontFamily = FontFamily(Font(R.font.inter)),
+        fontWeight = FontWeight.Normal,
+        fontSize = 13.sp,
+    ),
 
 )

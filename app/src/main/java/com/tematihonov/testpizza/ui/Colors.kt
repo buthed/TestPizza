@@ -17,6 +17,7 @@ data class Colors(
     val textGrayLow: Color = Color(0xFFC3C4C9),
     val mainPink: Color = Color(0xFFFD3A69),
     val lowPink: Color = Color(0xFFFFCDD5),
+    val greyDivider: Color = Color(0xFFF3F5F9),
 
 )
 
