@@ -20,7 +20,9 @@ import com.tematihonov.testpizza.navigation.TestPizzaNavigation
 import com.tematihonov.testpizza.presentation.components.BottomNavigationBar
 import com.tematihonov.testpizza.ui.colors
 import com.tematihonov.testpizza.ui.theme.TestPizzaTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     @OptIn(ExperimentalMaterial3Api::class)
@@ -44,7 +46,8 @@ class MainActivity : ComponentActivity() {
                             onItemClick = {
                                 navController.navigate(it.route)
                             })
-                    }
+                    },
+                    containerColor = MaterialTheme.colors.backgroundMain
                 ) { padding ->
                     Box(modifier = Modifier.fillMaxSize().padding(padding)){
                         TestPizzaNavigation(navController = navController, )
