@@ -1,4 +1,4 @@
-package com.tematihonov.testpizza.presentation.components
+package com.tematihonov.testpizza.presentation.menu.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -20,9 +20,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.tematihonov.testpizza.R
 import com.tematihonov.testpizza.domain.models.responseProducts.Product
 import com.tematihonov.testpizza.ui.colors
 import com.tematihonov.testpizza.ui.theme.Typography
@@ -46,7 +48,9 @@ fun MenuItem(product: Product, onClickProduct: () -> Unit) {
                 AsyncImage(
                     model = product.img,
                     contentDescription = null,
-                    modifier = Modifier.size(135.dp).padding(end = 22.dp)
+                    modifier = Modifier
+                        .size(135.dp)
+                        .padding(end = 22.dp)
                 )
                 Column(Modifier.height(135.dp), verticalArrangement = Arrangement.SpaceBetween) {
                     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -66,7 +70,7 @@ fun MenuItem(product: Product, onClickProduct: () -> Unit) {
                             colors = CardDefaults.cardColors(containerColor = MaterialTheme.colors.backgroundMain)
                         ) {
                             Text(
-                                text = "от ${product.price} р.",
+                                text = stringResource(id = R.string.add_to_basket, product.price),
                                 style = Typography.labelLarge,
                                 modifier = Modifier.padding(vertical = 8.dp, horizontal = 18.dp),
                                 color = MaterialTheme.colors.pinkBottomBar
@@ -78,5 +82,3 @@ fun MenuItem(product: Product, onClickProduct: () -> Unit) {
         }
     }
 }
-
-

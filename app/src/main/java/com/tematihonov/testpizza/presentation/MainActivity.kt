@@ -12,6 +12,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.tematihonov.testpizza.R
@@ -32,16 +33,31 @@ class MainActivity : ComponentActivity() {
         setContent {
             TestPizzaTheme {
                 val bottomBarItems = listOf(
-                    BottomNavItem(name = "Меню", route = "menu", icon = R.drawable.icon_menu),
-                    BottomNavItem(name = "Профиль", route = "profile", icon = R.drawable.icon_profile),
-                    BottomNavItem(name = "Корзина", route = "basket", icon = R.drawable.icon_basket),)
+                    BottomNavItem(
+                        name = stringResource(id = R.string.screen_menu),
+                        route = "menu",
+                        icon = R.drawable.icon_menu
+                    ),
+                    BottomNavItem(
+                        name = stringResource(id = R.string.screen_profile),
+                        route = "profile",
+                        icon = R.drawable.icon_profile
+                    ),
+                    BottomNavItem(
+                        name = stringResource(id = R.string.screen_basket),
+                        route = "basket",
+                        icon = R.drawable.icon_basket
+                    ),
+                )
                 val navController = rememberNavController()
 
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     bottomBar = {
                         BottomNavigationBar(
-                            modifier = Modifier.background(color = MaterialTheme.colors.backgroundBottomBar).height(56.dp),
+                            modifier = Modifier
+                                .background(color = MaterialTheme.colors.backgroundBottomBar)
+                                .height(56.dp),
                             items = bottomBarItems,
                             navController = navController,
                             onItemClick = {
@@ -53,7 +69,9 @@ class MainActivity : ComponentActivity() {
                     },
                     containerColor = MaterialTheme.colors.backgroundMain
                 ) { padding ->
-                    Box(modifier = Modifier.fillMaxSize().padding(padding)){
+                    Box(modifier = Modifier
+                        .fillMaxSize()
+                        .padding(padding)){
                         TestPizzaNavigation(navController = navController, )
                     }
                 }

@@ -1,4 +1,4 @@
-package com.tematihonov.testpizza.presentation.components
+package com.tematihonov.testpizza.presentation.menu.components
 
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -30,15 +29,11 @@ import kotlin.math.absoluteValue
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun MenuBanner() {
-    val images = listOf(
-        R.drawable.banner_1,
-        R.drawable.banner_2,
-        R.drawable.banner_3,
-    )
+
     val pagerState = rememberPagerState()
     val bannerAnimation by animateDpAsState(
         targetValue = if (pagerState.currentPage != 0) 0.dp else 8.dp,
-        animationSpec =  tween(200), label = ""
+        animationSpec = tween(200), label = ""
     )
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
@@ -50,7 +45,10 @@ fun MenuBanner() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(112.dp),
-                contentPadding = PaddingValues(start = if (pagerState.currentPage == 0) 0.dp else 32.dp, end = 32.dp),
+                contentPadding = PaddingValues(
+                    start = if (pagerState.currentPage == 0) 0.dp else 32.dp,
+                    end = 32.dp
+                ),
                 itemSpacing = 0.dp
             ) { currentPage ->
                 Box(
@@ -58,7 +56,8 @@ fun MenuBanner() {
                         .padding(start = bannerAnimation)
                         .graphicsLayer {
                             val pageOffset = (
-                                    (pagerState.currentPage - currentPage) + pagerState.currentPageOffset).absoluteValue
+                                    (pagerState.currentPage - currentPage) + pagerState.currentPageOffset)
+                                .absoluteValue
                             alpha = lerp(
                                 start = 0.2f,
                                 stop = 1f,
@@ -85,3 +84,9 @@ fun MenuBanner() {
         }
     }
 }
+
+val images = listOf(
+    R.drawable.banner_1,
+    R.drawable.banner_2,
+    R.drawable.banner_3,
+)

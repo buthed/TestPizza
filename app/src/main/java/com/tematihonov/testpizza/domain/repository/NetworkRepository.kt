@@ -6,5 +6,4 @@ import retrofit2.Response
 interface NetworkRepository {
 
     suspend fun getProducts(): Response<ArrayList<Product>>
-
 }

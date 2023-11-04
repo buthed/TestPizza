@@ -8,6 +8,7 @@ import javax.inject.Inject
 class GetProductsUseCase @Inject constructor(
     private val networkRepository: NetworkRepository
 ) {
+
     suspend fun invoke(): Response<ArrayList<Product>> {
         return networkRepository.getProducts()
     }

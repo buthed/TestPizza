@@ -7,6 +7,7 @@ import com.tematihonov.testpizza.utils.RoomConstants.PRODUCTS_TABLE
 
 @Entity(tableName = PRODUCTS_TABLE)
 data class ProductEntity(
+
     @ColumnInfo(name ="category")
     val category: String,
     @ColumnInfo(name ="description")

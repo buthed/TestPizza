@@ -37,7 +37,7 @@ class MenuViewModel @Inject constructor(
         }
     }
 
-    fun loadNetworkProducts(currentCategory: String) {
+    private fun loadNetworkProducts(currentCategory: String) {
         viewModelScope.launch {
             isLoadingProducts = true
             val result = networkUseCase.getProductsUseCase.invoke()
@@ -54,7 +54,7 @@ class MenuViewModel @Inject constructor(
         }
     }
 
-    fun loadLocalProducts(currentCategory: String) {
+    private fun loadLocalProducts(currentCategory: String) {
         val result = ArrayList<Product>()
         viewModelScope.launch {
             isLoadingProducts = true

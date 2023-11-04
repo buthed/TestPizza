@@ -7,6 +7,7 @@ import javax.inject.Inject
 class SaveProductToLocalUseCase @Inject constructor(
     private val roomRepository: RoomRepository
 ) {
+
     suspend fun invoke(product: ProductEntity) {
         return roomRepository.saveProductToLocal(product)
     }

@@ -21,10 +21,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.tematihonov.testpizza.presentation.components.BottomShadow
-import com.tematihonov.testpizza.presentation.components.MenuBanner
-import com.tematihonov.testpizza.presentation.components.MenuCategories
-import com.tematihonov.testpizza.presentation.components.MenuItem
+import com.tematihonov.testpizza.presentation.menu.components.BottomShadow
+import com.tematihonov.testpizza.presentation.menu.components.MenuBanner
+import com.tematihonov.testpizza.presentation.menu.components.MenuCategories
+import com.tematihonov.testpizza.presentation.menu.components.MenuItem
 import com.tematihonov.testpizza.ui.colors
 import com.tematihonov.testpizza.utils.connectivity_observer.ConnectivityObserver
 import com.tematihonov.testpizza.utils.connectivity_observer.NetworkConnectivityObserver

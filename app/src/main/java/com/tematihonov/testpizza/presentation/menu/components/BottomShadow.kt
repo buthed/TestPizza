@@ -1,4 +1,4 @@
-package com.tematihonov.testpizza.presentation.components
+package com.tematihonov.testpizza.presentation.menu.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

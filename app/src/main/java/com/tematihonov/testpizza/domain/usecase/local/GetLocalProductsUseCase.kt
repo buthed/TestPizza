@@ -8,8 +8,8 @@ import javax.inject.Inject
 class GetLocalProductsUseCase @Inject constructor(
     private val roomRepository: RoomRepository
 ) {
+
     suspend fun invoke(): Flow<List<ProductEntity>> {
         return roomRepository.getLocalProducts()
     }
-
 }

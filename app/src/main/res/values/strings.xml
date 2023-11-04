@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TestPizza</string>
+    <string name="screen_menu">Меню</string>
+    <string name="screen_profile">Профиль</string>
+    <string name="screen_basket">Корзина</string>
+    <string name="add_to_basket">от %1$d р</string>
 </resources>
