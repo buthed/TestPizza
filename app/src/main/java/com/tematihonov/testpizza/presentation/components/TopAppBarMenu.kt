@@ -32,7 +32,6 @@ fun TopAppBarMenu() {
             Text(text = "Mосква", style = Typography.bodyMedium)
             Image(painter = painterResource(id = R.drawable.icon_arrow), contentDescription = "",
                 Modifier.size(24.dp))
-            //TODO add DropdownMenu?
         }
         Image(painter = painterResource(id = R.drawable.icon_qr), contentDescription = "",
             Modifier

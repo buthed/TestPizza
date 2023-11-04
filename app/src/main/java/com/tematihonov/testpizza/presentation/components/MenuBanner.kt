@@ -1,14 +1,18 @@
 package com.tematihonov.testpizza.presentation.components
 
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -31,18 +35,27 @@ fun MenuBanner() {
         R.drawable.banner_2,
         R.drawable.banner_3,
     )
-    val pagerState = rememberPagerState(pageCount = images.size)
-
+    val pagerState = rememberPagerState()
+    val bannerAnimation by animateDpAsState(
+        targetValue = if (pagerState.currentPage != 0) 0.dp else 8.dp,
+        animationSpec =  tween(200), label = ""
+    )
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box() {
             HorizontalPager(
+                count = images.size,
                 state = pagerState,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(112.dp),
+                contentPadding = PaddingValues(start = if (pagerState.currentPage == 0) 0.dp else 32.dp, end = 32.dp),
+                itemSpacing = 0.dp
             ) { currentPage ->
                 Box(
                     Modifier
+                        .padding(start = bannerAnimation)
                         .graphicsLayer {
                             val pageOffset = (
                                     (pagerState.currentPage - currentPage) + pagerState.currentPageOffset).absoluteValue
@@ -57,9 +70,12 @@ fun MenuBanner() {
                         painter = painterResource(id = images[currentPage]),
                         contentDescription = "",
                         modifier = Modifier
-                            .width(320.dp) //TODO recheck?
+                            .fillMaxWidth()
                             .height(112.dp)
-                            .padding(horizontal = 8.dp)
+                            .padding(
+                                start = 8.dp,
+                                end = 8.dp
+                            )
                             .clip(RoundedCornerShape(10.dp)),
                         contentScale = ContentScale.FillBounds
                     )

@@ -60,7 +60,7 @@ fun MenuCategories(viewModel: MenuViewModel) {
 fun SelectedCategory(selectCategory: () -> Unit, category: String) {
     Box(
         modifier = Modifier
-            .shadow(10.dp) //TODO fix shadow
+            .shadow(10.dp)
             .clip(RoundedCornerShape(6.dp))
             .background(MaterialTheme.colors.lowPink)
             .padding(vertical = 8.dp, horizontal = 23.dp)
@@ -75,7 +75,7 @@ fun SelectedCategory(selectCategory: () -> Unit, category: String) {
 fun Category(selectCategory: () -> Unit, category: String) {
     Box(
         modifier = Modifier
-            .shadow(10.dp) //TODO fix shadow
+            .shadow(10.dp)
             .clip(RoundedCornerShape(6.dp))
             .background(Color.White)
             .padding(vertical = 8.dp, horizontal = 23.dp)

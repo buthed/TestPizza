@@ -36,7 +36,7 @@ fun BottomNavigationBar(
     ) {
         items.forEach { item ->
             val selected = item.route == backStackEntry.value?.destination?.route
-            NavigationBarItem( //TODO change size?
+            NavigationBarItem(
                 selected = selected,
                 onClick = { onItemClick(item) },
                 icon = {
