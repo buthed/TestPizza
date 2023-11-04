@@ -2,6 +2,7 @@ package com.tematihonov.testpizza.presentation.components
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,7 +28,7 @@ import com.tematihonov.testpizza.ui.colors
 import com.tematihonov.testpizza.ui.theme.Typography
 
 @Composable
-fun MenuItem(product: Product) {
+fun MenuItem(product: Product, onClickProduct: () -> Unit) {
     Column {
         Divider(
             modifier = Modifier.fillMaxWidth(),
@@ -39,6 +40,7 @@ fun MenuItem(product: Product) {
                 .background(MaterialTheme.colors.backgroundMain)
                 .fillMaxWidth()
                 .padding(16.dp)
+                .clickable(onClick = onClickProduct)
         ) {
             Row(horizontalArrangement = Arrangement.SpaceBetween) {
                 AsyncImage(

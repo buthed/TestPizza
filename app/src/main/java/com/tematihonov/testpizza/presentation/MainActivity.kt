@@ -18,6 +18,7 @@ import com.tematihonov.testpizza.R
 import com.tematihonov.testpizza.navigation.BottomNavItem
 import com.tematihonov.testpizza.navigation.TestPizzaNavigation
 import com.tematihonov.testpizza.presentation.components.BottomNavigationBar
+import com.tematihonov.testpizza.presentation.components.TopAppBarMenu
 import com.tematihonov.testpizza.ui.colors
 import com.tematihonov.testpizza.ui.theme.TestPizzaTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,6 +47,9 @@ class MainActivity : ComponentActivity() {
                             onItemClick = {
                                 navController.navigate(it.route)
                             })
+                    },
+                    topBar = {
+                        TopAppBarMenu()
                     },
                     containerColor = MaterialTheme.colors.backgroundMain
                 ) { padding ->

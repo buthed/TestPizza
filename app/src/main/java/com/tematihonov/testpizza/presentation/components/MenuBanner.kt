@@ -31,11 +31,9 @@ fun MenuBanner() {
         R.drawable.banner_2,
         R.drawable.banner_3,
     )
-
     val pagerState = rememberPagerState(pageCount = images.size)
 
     Column(
-
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box() {
