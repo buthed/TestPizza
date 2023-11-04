@@ -11,19 +11,29 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tematihonov.testpizza.presentation.menu.MenuViewModel
 import com.tematihonov.testpizza.ui.colors
 import com.tematihonov.testpizza.ui.theme.Typography
+import com.tematihonov.testpizza.utils.connectivity_observer.ConnectivityObserver
+import com.tematihonov.testpizza.utils.connectivity_observer.NetworkConnectivityObserver
 
 @Composable
 fun MenuCategories(viewModel: MenuViewModel) {
+    val context = LocalContext.current
+    val connectivityObserver = NetworkConnectivityObserver(context)
+    val networkStatus by connectivityObserver.observe().collectAsState(
+        initial = ConnectivityObserver.Status.Unavailable
+    )
     LazyRow(
         modifier = Modifier
             .fillMaxWidth()

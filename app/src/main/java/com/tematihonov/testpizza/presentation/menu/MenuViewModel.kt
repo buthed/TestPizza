@@ -6,7 +6,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tematihonov.testpizza.data.local.ProductEntity
 import com.tematihonov.testpizza.domain.models.responseProducts.Product
 import com.tematihonov.testpizza.domain.usecase.LocalUseCase
 import com.tematihonov.testpizza.domain.usecase.NetworkUseCase
@@ -19,21 +18,24 @@ import javax.inject.Inject
 @HiltViewModel
 class MenuViewModel @Inject constructor(
     private val networkUseCase: NetworkUseCase,
-    private val localUseCase: LocalUseCase
-): ViewModel() {
+    private val localUseCase: LocalUseCase,
+) : ViewModel() {
 
     val categories = listOf("Пицца", "Комбо", "Закуски", "Коктейли", "Кофе", "Напитки")
     var currentCategory by mutableStateOf("Пицца")
+    var currentNetworkStatus by mutableStateOf("Available")
     var isLoadingProducts by mutableStateOf(false)
 
     var productsList by mutableStateOf(emptyList<Product>())
-    var productsListLocal by mutableStateOf(emptyList<ProductEntity>())
 
-    init {
-        //loadNetworkProducts(currentCategory)
-        loadLocalProducts(currentCategory)
+    fun loadProducts(currentCategory: String = "Пицца", networkStatus: String) {
+        Log.d("GGG","currentNetworkStatus is $currentNetworkStatus")
+        if (networkStatus == "Available") {
+            loadNetworkProducts(currentCategory)
+        } else {
+            loadLocalProducts(currentCategory)
+        }
     }
-
 
     fun loadNetworkProducts(currentCategory: String) {
         viewModelScope.launch {
@@ -48,21 +50,20 @@ class MenuViewModel @Inject constructor(
                 productsList = newArr
                 isLoadingProducts = false
                 saveProductsFromNetworkToLocal(tempList)
-                productsList.forEach {
-                    Log.d("GGG", it.name)
-                }
             }
         }
     }
 
     fun loadLocalProducts(currentCategory: String) {
-        var result = ArrayList<Product>()
+        val result = ArrayList<Product>()
         viewModelScope.launch {
+            isLoadingProducts = true
             localUseCase.getLocalProductsUseCase.invoke().collect {
                 it.toMutableList().forEach { product ->
                     if (product.category == currentCategory) result.add(entityToDto(product))
                 }
                 productsList = result
+                isLoadingProducts = false
             }
         }
     }
@@ -77,6 +78,6 @@ class MenuViewModel @Inject constructor(
 
     fun setNewCategory(newCategory: String) {
         currentCategory = newCategory
-        loadNetworkProducts(currentCategory)
+        loadProducts(currentCategory = newCategory, networkStatus = currentNetworkStatus)
     }
 }
